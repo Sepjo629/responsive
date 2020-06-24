@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Route } from "react-router-dom";
+import { HashRouter, Route } from "react-router-dom";
 import { gsap } from "gsap";
 import "./styles/App.scss";
 import Header from "./components/header";
@@ -52,17 +52,19 @@ function App() {
     };
   });
   return (
-    <>
-      <Header dimensions={dimensions} />
-      <div className="App">
-        {routes.map(({ path, Component }) => (
-          <Route key={path} exact path={path}>
-            <Component dimensions={dimensions} />
-          </Route>
-        ))}
-      </div>
-      <Navigation />
-    </>
+    <HashRouter basename="/">
+      <>
+        <Header dimensions={dimensions} />
+        <div className="App">
+          {routes.map(({ path, Component }) => (
+            <Route key={path} exact path={path}>
+              <Component dimensions={dimensions} />
+            </Route>
+          ))}
+        </div>
+        <Navigation />
+      </>
+    </HashRouter>
   );
 }
 
